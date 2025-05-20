@@ -4,13 +4,9 @@
  */
 package view;
 
-import arboles.*;
-
 import javax.swing.JOptionPane;
 
 import model.Libro;
-
-import static controller.ControladorLibro.libros;
 
 /**
  *
