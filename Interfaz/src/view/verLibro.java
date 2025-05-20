@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package newpackage;
+package view;
 
-import Arboles.Arboles;
-import java.util.ArrayList;
-import java.util.List;
+import arboles.*;
+import model.Libro;
+
 import javax.swing.JOptionPane;
-import static newpackage.ControladorLibro.libros;
+
 
 /**
  *

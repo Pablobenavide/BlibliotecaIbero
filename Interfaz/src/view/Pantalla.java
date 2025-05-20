@@ -2,8 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package newpackage;
-import Arboles.*;
+package view;
+
+import arboles.*;
+import model.Usuario;
+
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 

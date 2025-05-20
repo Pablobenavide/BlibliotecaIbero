@@ -2,21 +2,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package newpackage;
+package view;
 
-import Arboles.*;
+import arboles.*;
+import model.Libro;
+
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author pablo
  */
-public class EliminarLibro extends javax.swing.JFrame {
+public class PedirLibro extends javax.swing.JFrame {
 
     /**
-     * Creates new form EliminarLibro
+     * Creates new form PedirLibro
      */
-    public EliminarLibro() {
+    public PedirLibro() {
         initComponents();
     }
 
@@ -40,7 +42,7 @@ public class EliminarLibro extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Salir");
+        jButton1.setText("Atras");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -54,9 +56,9 @@ public class EliminarLibro extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setText("Eliminar libro");
+        jLabel2.setText("Pedir libro");
 
-        jButton2.setText("Eliminar");
+        jButton2.setText("Pedir");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -68,7 +70,7 @@ public class EliminarLibro extends javax.swing.JFrame {
         jLabel1.setToolTipText("");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        jLabel6.setText("Ingresa el libro que desea eliminar");
+        jLabel6.setText("Ingresa el libro que desea pedir");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -87,16 +89,16 @@ public class EliminarLibro extends javax.swing.JFrame {
                             .addComponent(jButton2)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(117, 117, 117)
+                        .addGap(153, 153, 153)
                         .addComponent(jLabel2)))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(81, 81, 81)
                 .addComponent(jLabel1)
@@ -104,7 +106,7 @@ public class EliminarLibro extends javax.swing.JFrame {
                 .addComponent(txtIdLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(37, 37, 37))
         );
@@ -117,9 +119,7 @@ public class EliminarLibro extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -137,11 +137,12 @@ public class EliminarLibro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:     
-        PantallaAdmin ingre = new PantallaAdmin();
-        ingre.setVisible(true);
-        ingre.setResizable(false);
-        ingre.setLocationRelativeTo(null);
+        // TODO add your handling code here:        // TODO add your handling code here:
+
+        Panta1 pantausu = new Panta1();
+        pantausu.setVisible(true);
+        pantausu.setResizable(false);
+        pantausu.setLocationRelativeTo(null);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -151,31 +152,28 @@ public class EliminarLibro extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        int id = Integer.parseInt(txtIdLibro.getText());
 
-        String idString = txtIdLibro.getText();
-        
-        int id;
-
-        try {
-            id = Integer.parseInt(idString);
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "No existe el ID indicado", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+        Libro libro = Arboles.libros.buscarLibroPorID(id);
+        if (libro != null && libro.getEstado() != false) {
+            
+            Arboles.libros.cambiarEstadoLibroPorID(id);
+            Arboles.usuarioActual.añadirLibroPrestado(libro);
+            JOptionPane.showInternalMessageDialog(null, "El libro ahora esta a tu cargo :)");
+        }else if(libro != null && libro.getEstado() == false){
+            JOptionPane.showInternalMessageDialog(null, "El libro no esta disponible");
+        }else{
+            JOptionPane.showInternalMessageDialog(null, "El libro no existe");
         }
+        
+        
+        
+        /*ControladorLibro.prestarLibro(id);
 
-        Arboles.libros.eliminarLibro(id);
-        JOptionPane.showMessageDialog(null, "Libro eliminado de forma exitosa");
-        txtIdLibro.setText("");
-        txtIdLibro.requestFocus();
-
-   
-        /*  int id = Integer.parseInt(txtIdLibro.getText());
-
-    ControladorLibro.eliminarLibro(id);
-
-    JOptionPane.showMessageDialog(this, "El libro fue eliminado con éxito.", "Libro eliminado", JOptionPane.INFORMATION_MESSAGE);
+    JOptionPane.showMessageDialog(this, "El libro fue prestado con éxito.", "Libro prestado", JOptionPane.INFORMATION_MESSAGE);
 
     txtIdLibro.setText("");
+
     txtIdLibro.requestFocus();*/
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -193,5 +191,4 @@ public class EliminarLibro extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField txtIdLibro;
     // End of variables declaration//GEN-END:variables
-
 }
