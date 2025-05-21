@@ -1,4 +1,4 @@
-package newpackage;
+package model;
 
 /**
  @Pablo David Benavides Tunjano

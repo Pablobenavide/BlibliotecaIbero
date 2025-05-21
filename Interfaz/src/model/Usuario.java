@@ -1,9 +1,7 @@
-package newpackage;
+package model;
 
 
-import Arboles.*;
-
-import Arboles.Arbol;
+import arboles.*;
 
 /**
  * @Pablo David Benavides Tunjano

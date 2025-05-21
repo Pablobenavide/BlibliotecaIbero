@@ -2,21 +2,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package newpackage;
+package view;
 
-import Arboles.*;
+import arboles.Arboles;
+import model.Libro;
+
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author pablo
  */
-public class PedirLibro extends javax.swing.JFrame {
+public class DevolverLibro extends javax.swing.JFrame {
 
     /**
-     * Creates new form PedirLibro
+     * Creates new form DevolverLibro
      */
-    public PedirLibro() {
+    public DevolverLibro() {
         initComponents();
     }
 
@@ -54,9 +56,9 @@ public class PedirLibro extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setText("Pedir libro");
+        jLabel2.setText("Devolver libro");
 
-        jButton2.setText("Pedir");
+        jButton2.setText("Devolver");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -68,7 +70,7 @@ public class PedirLibro extends javax.swing.JFrame {
         jLabel1.setToolTipText("");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        jLabel6.setText("Ingresa el libro que desea pedir");
+        jLabel6.setText("Ingresa el libro que desea devolver");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -87,7 +89,7 @@ public class PedirLibro extends javax.swing.JFrame {
                             .addComponent(jButton2)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(153, 153, 153)
+                        .addGap(129, 129, 129)
                         .addComponent(jLabel2)))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
@@ -104,7 +106,7 @@ public class PedirLibro extends javax.swing.JFrame {
                 .addComponent(txtIdLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(37, 37, 37))
         );
@@ -128,7 +130,7 @@ public class PedirLibro extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -150,34 +152,33 @@ public class PedirLibro extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        
         int id = Integer.parseInt(txtIdLibro.getText());
 
         Libro libro = Arboles.libros.buscarLibroPorID(id);
-        if (libro != null && libro.getEstado() != false) {
+        if (libro != null && libro.getEstado() != true) {
             
             Arboles.libros.cambiarEstadoLibroPorID(id);
-            Arboles.usuarioActual.añadirLibroPrestado(libro);
-            JOptionPane.showInternalMessageDialog(null, "El libro ahora esta a tu cargo :)");
-        }else if(libro != null && libro.getEstado() == false){
-            JOptionPane.showInternalMessageDialog(null, "El libro no esta disponible");
+            Arboles.usuarioActual.retirarLibroPrestado(id);
+            JOptionPane.showInternalMessageDialog(null, "El libro se ha devuelto, gracias :)");
+            
         }else{
             JOptionPane.showInternalMessageDialog(null, "El libro no existe");
         }
         
         
-        
-        /*ControladorLibro.prestarLibro(id);
-
-    JOptionPane.showMessageDialog(this, "El libro fue prestado con éxito.", "Libro prestado", JOptionPane.INFORMATION_MESSAGE);
-
+     /*   int id = Integer.parseInt(txtIdLibro.getText());
+    ControladorLibro.devolverLibro(id);
+    JOptionPane.showMessageDialog(this, "El libro ha sido devuelto con éxito.", "Libro devuelto", JOptionPane.INFORMATION_MESSAGE);
     txtIdLibro.setText("");
-
     txtIdLibro.requestFocus();*/
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

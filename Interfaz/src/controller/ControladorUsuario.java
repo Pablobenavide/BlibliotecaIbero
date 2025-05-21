@@ -1,7 +1,11 @@
-package newpackage;
+package controller;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import model.Usuario;
+import view.Panta1;
+import view.Pantalla;
+import view.PantallaAdmin;
 
 public class ControladorUsuario {
     private static ArrayList<Usuario> usuarios = new ArrayList<>();
