@@ -1,6 +1,7 @@
 
-package Arboles;
-import newpackage.*;
+package arboles;
+import model.Libro;
+import model.Usuario;
 
 public class Nodo {
     
