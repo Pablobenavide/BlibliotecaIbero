@@ -1,8 +1,8 @@
-package Arboles;
+package arboles;
 
-import java.util.ArrayList;
-import java.util.List;
-import newpackage.*;
+import model.Libro;
+import model.Usuario;
+
 
 public class Arbol {
 
