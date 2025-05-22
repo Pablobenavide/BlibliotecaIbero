@@ -22,6 +22,22 @@ public class Pantalla extends javax.swing.JFrame {
      */
     public Pantalla() {
         initComponents();
+        txtContrasena.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                    btnLoginActionPerformed(null);
+                }
+            }
+        });
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                    txtContrasena.requestFocus();
+                }
+            }
+        });
     }
 
     /**
@@ -48,6 +64,8 @@ public class Pantalla extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setText("BIBLIOTECA ");
 
@@ -61,6 +79,7 @@ public class Pantalla extends javax.swing.JFrame {
             }
         });
 
+        btnLogin.setBackground(new java.awt.Color(0, 153, 255));
         btnLogin.setText("Ingresar");
         btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -75,6 +94,7 @@ public class Pantalla extends javax.swing.JFrame {
 
         jLabel4.setText("¿No estas registrado?");
 
+        btnRegistrar.setBackground(new java.awt.Color(0, 153, 255));
         btnRegistrar.setText("Click aqui");
         btnRegistrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -180,12 +200,11 @@ public class Pantalla extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        
+
         // metodo para obtener usuario y contraseña ingresados en registro
         String nombre = txtUsuario.getText();
         String contra = txtContrasena.getText();
-        
-        
+
         Usuario usuario = Arboles.arbolUsuarios.buscarUsuarioPorNombre(nombre);
         if (usuario != null && usuario.getPassword().equals(contra)) {
             Arboles.usuarioActual = usuario;
@@ -205,16 +224,16 @@ public class Pantalla extends javax.swing.JFrame {
                 pantausu.setResizable(false);
                 pantausu.setLocationRelativeTo(null);
                 this.setVisible(false);
-                JOptionPane.showMessageDialog(null, "Bienvenido a la biblioteca "+ nombre);
+                JOptionPane.showMessageDialog(null, "Bienvenido a la biblioteca " + nombre);
                 System.out.println("Ingreso exitoso");
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
         }
-       txtUsuario.setText("");
-       txtContrasena.setText("");
-       txtUsuario.requestFocus();
-       txtContrasena.requestFocus();
+        txtUsuario.setText("");
+        txtContrasena.setText("");
+        txtUsuario.requestFocus();
+        txtContrasena.requestFocus();
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseClicked
@@ -228,13 +247,12 @@ public class Pantalla extends javax.swing.JFrame {
         regis.setLocationRelativeTo(null);
         regis.setResizable(false);
         this.setVisible(false);
-  
+
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;

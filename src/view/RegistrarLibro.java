@@ -12,7 +12,6 @@ import arbolesPackage.*;
 
 import static controller.ControladorLibro.libros;
 
-
 /**
  *
  * @author pablo
@@ -24,6 +23,32 @@ public class RegistrarLibro extends javax.swing.JFrame {
      */
     public RegistrarLibro() {
         initComponents();
+        txtNameL.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                    jButton2ActionPerformed(null);
+                }
+            }
+        });
+
+        txtAutorL.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                    jButton2ActionPerformed(null); 
+                }
+            }
+        });
+
+        txtDescriL.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                    jButton2ActionPerformed(null);
+                }
+            }
+        });
     }
 
     /**
@@ -50,6 +75,9 @@ public class RegistrarLibro extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jButton1.setBackground(new java.awt.Color(0, 153, 255));
         jButton1.setText("Atras");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,6 +94,7 @@ public class RegistrarLibro extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Regristro de libros");
 
+        jButton2.setBackground(new java.awt.Color(0, 153, 255));
         jButton2.setText("Registrar libro");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -197,10 +226,10 @@ public class RegistrarLibro extends javax.swing.JFrame {
         String nombre = txtNameL.getText();
         String autor = txtAutorL.getText();
         String descripcion = txtDescriL.getText();
-        
+
         Libro nuevoLibro = new Libro(nombre, autor, descripcion);
         Arboles.libros.insertarLibro(nuevoLibro);
-        JOptionPane.showInternalMessageDialog(null, "Libro "+ nombre +" registrado exitosamente :)");
+        JOptionPane.showInternalMessageDialog(null, "Libro " + nombre + " registrado exitosamente :)");
         System.out.println("Libro registrado exitosamente");
         txtNameL.setText("");
         txtAutorL.setText("");
@@ -221,7 +250,6 @@ public class RegistrarLibro extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

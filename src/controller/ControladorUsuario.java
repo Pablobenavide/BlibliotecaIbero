@@ -68,8 +68,8 @@ public static void eliminarUsuario(String nombreUsuario) {
         inter.setVisible(false);
         Panta1 pantausu = new Panta1();
         pantausu.setVisible(true);
-        pantausu.setResizable(false);
-        pantausu.setLocationRelativeTo(null);
+        /*pantausu.setResizable(false);
+        pantausu.setLocationRelativeTo(null);*/
     }
 }
 

@@ -15,12 +15,30 @@ import arbolesPackage.*;
  * @author pablo
  */
 public class Registro extends javax.swing.JFrame {
-    
+
     /**
      * Creates new form Registro
      */
     public Registro() {
         initComponents();
+        txtUsuarioC.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                    txtContrasenaC.requestFocus(); 
+                }
+            }
+        });
+
+        
+        txtContrasenaC.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                    btnRegisActionPerformed(null); 
+                }
+            }
+        });
     }
 
     /**
@@ -46,6 +64,8 @@ public class Registro extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setText("BIBLIOTECA ");
 
@@ -59,6 +79,7 @@ public class Registro extends javax.swing.JFrame {
             }
         });
 
+        btnRegis.setBackground(new java.awt.Color(0, 153, 255));
         btnRegis.setText("Registrar");
         btnRegis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,6 +87,7 @@ public class Registro extends javax.swing.JFrame {
             }
         });
 
+        btninicio.setBackground(new java.awt.Color(0, 153, 255));
         btninicio.setText("Volver al inicio");
         btninicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,7 +183,7 @@ public class Registro extends javax.swing.JFrame {
         // TODO add your handling code here:
         String nombreUsuario = txtUsuarioC.getText();
         String contra = txtContrasenaC.getText();
-        
+
         if (!nombreUsuario.isEmpty() && !contra.isEmpty()) {
             Usuario nuevoUsuario = new Usuario(nombreUsuario, contra);
             Arboles.arbolUsuarios.insertarUsuario(nuevoUsuario);
@@ -191,7 +213,6 @@ public class Registro extends javax.swing.JFrame {
      * @param args the command line arguments
      */
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegis;
     private javax.swing.JButton btninicio;
@@ -206,5 +227,4 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JTextField txtUsuarioC;
     // End of variables declaration//GEN-END:variables
 
-   
 }
