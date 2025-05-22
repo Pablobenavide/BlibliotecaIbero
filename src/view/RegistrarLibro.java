@@ -8,7 +8,6 @@ import model.Libro;
 
 import javax.swing.JOptionPane;
 
-import arbolesPackage.*;
 import controller.ArbolesController;
 
 /**

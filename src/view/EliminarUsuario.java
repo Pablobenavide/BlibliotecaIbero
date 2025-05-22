@@ -6,8 +6,6 @@ package view;
 
 import javax.swing.JOptionPane;
 
-import arbolesPackage.*;
-
 import controller.ArbolesController;
 
 /**

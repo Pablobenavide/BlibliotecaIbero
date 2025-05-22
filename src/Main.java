@@ -14,7 +14,7 @@ import view.Pantalla;
  * @author pablo
  */
 public class Main {
-       
+
     public static void main(String[] args) {
         // Crear usuario administrador
         Usuario admin = new Usuario("admin", "123456");
