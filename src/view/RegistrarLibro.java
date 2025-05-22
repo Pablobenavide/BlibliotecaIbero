@@ -10,8 +10,6 @@ import javax.swing.JOptionPane;
 
 import arbolesPackage.*;
 
-import static controller.ControladorLibro.libros;
-
 /**
  *
  * @author pablo

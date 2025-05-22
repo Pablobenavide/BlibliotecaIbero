@@ -4,7 +4,7 @@
  */
 
 
-import arbolesPackage.*;
+import controller.ArbolesController;
 import model.Usuario;
 import view.Pantalla;
 
@@ -16,18 +16,20 @@ import view.Pantalla;
 public class Main {
        
     public static void main(String[] args) {
-        
-        Usuario admin = new Usuario("admin","123456");
-        Arboles.arbolUsuarios.insertarUsuario(admin);
-        //mostrar pantalla
+        // Crear usuario administrador
+        Usuario admin = new Usuario("admin", "123456");
+
+        // Obtener instancia del singleton y agregar usuario
+        ArbolesController arboles = ArbolesController.getInstancia();
+        arboles.insertarUsuario(admin);
+
+        // Mostrar interfaz gráfica
         Pantalla inter = new Pantalla();
         inter.setVisible(true);
         inter.setLocationRelativeTo(null);
         inter.setResizable(false);
-        
-        
-        
     }
+
 
     
 }
