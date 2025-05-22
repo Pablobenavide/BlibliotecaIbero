@@ -19,6 +19,14 @@ public class EliminarUsuario extends javax.swing.JFrame {
      */
     public EliminarUsuario() {
         initComponents();
+        txtNombreUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                    jButton2ActionPerformed(null);
+                }
+            }
+        });
     }
 
     /**
@@ -56,6 +64,9 @@ public class EliminarUsuario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jButton1.setBackground(new java.awt.Color(0, 153, 255));
         jButton1.setText("Atras");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,6 +83,7 @@ public class EliminarUsuario extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Eliminar usuario");
 
+        jButton2.setBackground(new java.awt.Color(0, 153, 255));
         jButton2.setText("Eliminar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,7 +177,7 @@ public class EliminarUsuario extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         String idString = txtNombreUsuario.getText();
-        
+
         int id;
 
         try {
@@ -174,8 +186,6 @@ public class EliminarUsuario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No existe el ID indicado", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
-        
 
         Arboles.arbolUsuarios.eliminarUsuario(id);
         Arboles.arbolUsuarios.imprimirInformacionUsuario();
@@ -187,7 +197,6 @@ public class EliminarUsuario extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

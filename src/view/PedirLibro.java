@@ -21,6 +21,14 @@ public class PedirLibro extends javax.swing.JFrame {
      */
     public PedirLibro() {
         initComponents();
+        txtIdLibro.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                    jButton2ActionPerformed(null);
+                }
+            }
+        });
     }
 
     /**
@@ -43,6 +51,9 @@ public class PedirLibro extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jButton1.setBackground(new java.awt.Color(0, 153, 255));
         jButton1.setText("Atras");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,6 +70,7 @@ public class PedirLibro extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Pedir libro");
 
+        jButton2.setBackground(new java.awt.Color(0, 153, 255));
         jButton2.setText("Pedir");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,18 +169,16 @@ public class PedirLibro extends javax.swing.JFrame {
 
         Libro libro = Arboles.libros.buscarLibroPorID(id);
         if (libro != null && libro.getEstado() != false) {
-            
+
             Arboles.libros.cambiarEstadoLibroPorID(id);
             Arboles.usuarioActual.añadirLibroPrestado(libro);
             JOptionPane.showInternalMessageDialog(null, "El libro ahora esta a tu cargo :)");
-        }else if(libro != null && libro.getEstado() == false){
+        } else if (libro != null && libro.getEstado() == false) {
             JOptionPane.showInternalMessageDialog(null, "El libro no esta disponible");
-        }else{
+        } else {
             JOptionPane.showInternalMessageDialog(null, "El libro no existe");
         }
-        
-        
-        
+
         /*ControladorLibro.prestarLibro(id);
 
     JOptionPane.showMessageDialog(this, "El libro fue prestado con éxito.", "Libro prestado", JOptionPane.INFORMATION_MESSAGE);
