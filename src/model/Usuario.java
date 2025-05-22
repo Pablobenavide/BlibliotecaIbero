@@ -1,7 +1,7 @@
 package model;
 
 
-import arboles.*;
+import arbolesPackage.*;
 
 /**
  * @Pablo David Benavides Tunjano

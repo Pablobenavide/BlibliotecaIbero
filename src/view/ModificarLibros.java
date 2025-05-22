@@ -221,7 +221,7 @@ public class ModificarLibros extends javax.swing.JFrame {
             return;
         }
 
-        Libro libro = arboles.Arboles.libros.buscarLibroPorID(id);
+        Libro libro = arbolesPackage.Arboles.libros.buscarLibroPorID(id);
 
         if (libro != null) {
             libro.setNombre(nombre);
