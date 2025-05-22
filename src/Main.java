@@ -4,7 +4,7 @@
  */
 
 
-import arboles.*;
+import arbolesPackage.*;
 import model.Usuario;
 import view.Pantalla;
 

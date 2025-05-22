@@ -4,10 +4,11 @@
  */
 package view;
 
-import arboles.Arboles;
 import model.Libro;
 
 import javax.swing.JOptionPane;
+
+import arbolesPackage.Arboles;
 
 /**
  *
