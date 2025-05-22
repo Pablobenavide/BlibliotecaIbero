@@ -1,7 +1,8 @@
 package model;
 
 
-import arbolesPackage.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Pablo David Benavides Tunjano
@@ -15,13 +16,13 @@ public class Usuario {
     private int ID;
     private String nombreUsuario;
     private String password;
-    private Arbol librosPrestados;
+    private List<Libro> librosPrestados;
 
     public Usuario(String nombreUsuario, String password) {
         this.ID = autoincrementable++;
         this.nombreUsuario = nombreUsuario;
         this.password = password;
-        this.librosPrestados = new Arbol();
+        this.librosPrestados = new ArrayList<Libro>();
     }
 
     public int getID() {
@@ -49,16 +50,29 @@ public class Usuario {
     }
 
     public void añadirLibroPrestado(Libro libro) {
-        librosPrestados.insertarLibro(libro);
+        librosPrestados.add(libro);
     }
 
     public void verLibrosPrestados() {
-        librosPrestados.imprimirInformacionLibro();
+        if (librosPrestados.isEmpty()) {
+            System.out.println("No hay libros prestados.");
+        } else {
+            System.out.println("Libros prestados:");
+            for (Libro libro : librosPrestados) {
+                System.out.println(libro);
+            }
+        }
 
     }
 
     public void retirarLibroPrestado(int numID) {
-        librosPrestados.eliminarLibro(numID);
+        for (Libro libro : librosPrestados) {
+            if (libro.getID() == numID) {
+                librosPrestados.remove(libro);
+                System.out.println("Libro retirado: " + libro);
+                return;
+            }
+        }
     }
 
     @Override
