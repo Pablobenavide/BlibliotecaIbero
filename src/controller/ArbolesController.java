@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class ArbolesController {
+
     private static ArbolesController instancia;
 
     private Usuario usuarioActual;
@@ -27,7 +28,6 @@ public class ArbolesController {
     }
 
     // Métodos públicos
-
     public void insertarUsuario(Usuario usuario) {
         arbolUsuarios.put(usuario.getID(), usuario);
         usuariosPorNombre.put(usuario.getNombreUsuario(), usuario);
@@ -95,5 +95,13 @@ public class ArbolesController {
 
     public void setUsuarioActual(Usuario usuarioActual) {
         this.usuarioActual = usuarioActual;
+    }
+
+    public void eliminarLibroDelMapaPorNombre(String nombre) {
+        librosPorNombre.remove(nombre);
+    }
+
+    public void insertarLibroEnMapaPorNombre(Libro libro) {
+        librosPorNombre.put(libro.getNombre(), libro);
     }
 }

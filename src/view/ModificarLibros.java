@@ -297,9 +297,11 @@ public class ModificarLibros extends javax.swing.JFrame {
         Libro libro = arboles.buscarLibroPorID(id);
 
         if (libro != null) {
+            arboles.eliminarLibroDelMapaPorNombre(libro.getNombre());
             libro.setNombre(nombre);
             libro.setAutor(autor);
             libro.setDescripcion(descripcion);
+            arboles.insertarLibroEnMapaPorNombre(libro);
             JOptionPane.showInternalMessageDialog(null, "Libro editado :)");
         } else {
             JOptionPane.showMessageDialog(this, "No se encontró ningún libro con el ID especificado.", "Error",

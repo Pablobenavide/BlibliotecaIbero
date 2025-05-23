@@ -199,22 +199,24 @@ public class Registro extends javax.swing.JFrame {
     }// GEN-LAST:event_txtUsuarioCActionPerformed
 
     private void btnRegisActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnRegisActionPerformed
-        String nombreUsuario = txtUsuarioC.getText();
-        String contra = txtContrasenaC.getText();
+        String nombreUsuario = txtUsuarioC.getText().trim();
+        String contra = txtContrasenaC.getText().trim();
 
         if (!nombreUsuario.isEmpty() && !contra.isEmpty()) {
-            Usuario nuevoUsuario = new Usuario(nombreUsuario, contra);
-
-            // Usar singleton
             ArbolesController arboles = ArbolesController.getInstancia();
-            arboles.insertarUsuario(nuevoUsuario);
 
-            JOptionPane.showMessageDialog(null, "Usuario registrado");
+            // Verificar si ya existe el usuario
+            if (arboles.buscarUsuarioPorNombre(nombreUsuario) != null) {
+                JOptionPane.showMessageDialog(null, "El nombre de usuario ya está registrado.","Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                Usuario nuevoUsuario = new Usuario(nombreUsuario, contra);
+                arboles.insertarUsuario(nuevoUsuario);
+                JOptionPane.showMessageDialog(null, "Usuario registrado exitosamente.");
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "Ingrese un usuario y contraseña");
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese un usuario y una contraseña.","Error", JOptionPane.ERROR_MESSAGE);
         }
 
-        // Limpiar campos
         txtUsuarioC.setText("");
         txtContrasenaC.setText("");
         txtUsuarioC.requestFocus();
