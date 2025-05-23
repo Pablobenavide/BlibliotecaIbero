@@ -257,7 +257,7 @@ public class Pantalla extends javax.swing.JFrame {
                 System.out.println("Ingreso exitoso");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
+            JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         // Limpiar campos y devolver el foco
