@@ -237,7 +237,7 @@ public class Pantalla extends javax.swing.JFrame {
         if (usuario != null && usuario.getPassword().equals(contra)) {
             arboles.setUsuarioActual(usuario); // establecer usuario actual
 
-            if ("admin".equals(usuario.getNombreUsuario()) && "123456".equals(usuario.getPassword())) {
+            if (usuario.getTipoUsuario() == model.TipoUsuarioEnum.ADMINISTRADOR) {
                 // Si el usuario es administrador, mostrar menú de administrador
                 PantallaAdmin ingre = new PantallaAdmin();
                 ingre.setVisible(true);
