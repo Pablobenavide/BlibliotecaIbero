@@ -67,14 +67,33 @@ Contraseña: 123456
 
 - El controlador ArbolesController es un singleton que contiene:
 
--- Un árbol de libros (Arbol libros)
+  - Un árbol de libros (Arbol libros)
 
--- Un árbol de usuarios (Arbol arbolUsuarios)
+  - Un árbol de usuarios (Arbol arbolUsuarios)
 
--- El usuario autenticado actualmente (usuarioActual)
+  - El usuario autenticado actualmente (usuarioActual)
 
 - Los árboles implementan operaciones básicas:
 
--- Insertar, buscar, eliminar, imprimir.
+  - Insertar, buscar, eliminar, imprimir.
 
 - Cada usuario tiene su propio árbol de libros prestados (gestionado por el controlador).
+
+## 🎯 Futuras Mejoras
+
+Persistencia en archivos o base de datos.
+
+Validación más robusta de entrada del usuario.
+
+Historial de préstamos.
+
+Interfaz más moderna usando JavaFX o frameworks externos.
+
+## 🧑‍💻 Autor
+
+Desarrollado por:
+
+- Pablo David Benavides Tunjano
+
+- Samuel Gaviria Morales
+
