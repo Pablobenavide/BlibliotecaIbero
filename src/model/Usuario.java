@@ -6,7 +6,6 @@ import java.util.List;
 
 /**
  * @Pablo David Benavides Tunjano
- * @Ricardo Alfonso Tafur Caaballo
  * @Samuel Gaviria Morales
  */
 
