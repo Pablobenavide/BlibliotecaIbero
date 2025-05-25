@@ -2,7 +2,6 @@ package model;
 
 /**
  @Pablo David Benavides Tunjano
- @Ricardo Alfonso Tafur Caaballo
  @Samuel Gaviria Morales
  */
 
