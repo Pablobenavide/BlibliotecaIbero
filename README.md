@@ -75,8 +75,11 @@ src/
 3. Compila y ejecuta el archivo Main.java.
 
 4. Al iniciar, se crea automáticamente un usuario administrador:
+
 Usuario: admin
+
 Contraseña: 123456
+
 
 ## Notas Técnicas
 
