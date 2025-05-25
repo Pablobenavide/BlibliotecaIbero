@@ -31,20 +31,35 @@ Este proyecto es una aplicación de escritorio desarrollada en Java que permite 
 
 ## 🧩 Estructura del Proyecto
 src/
+
 │
+
 ├── modelo/
+
 │ ├── Libro.java
+
 │ ├── Usuario.java
+
 │ └── Arbol.java
+
 │
+
 ├── controlador/
+
 │ └── ArbolesController.java
+
 │
+
 ├── vistas/
+
 │ ├── Pantalla.java
+
 │ ├── PantallaAdmin.java
+
 │ └── Panta1.java
+
 │
+
 └── Main.java
 
 
