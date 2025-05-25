@@ -107,7 +107,7 @@ Historial de préstamos.
 
 Interfaz más moderna usando JavaFX o frameworks externos.
 
-## 🧑‍💻 Autor
+## 🧑‍💻 Autores
 
 Desarrollado por:
 
