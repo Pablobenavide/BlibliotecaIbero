@@ -5,6 +5,7 @@
 package view;
 
 import model.Usuario;
+import model.TipoUsuarioEnum;
 
 import javax.swing.JOptionPane;
 
@@ -190,7 +191,7 @@ public class Registro extends javax.swing.JFrame {
             if (arboles.buscarUsuarioPorNombre(nombreUsuario) != null) {
                 JOptionPane.showMessageDialog(null, "El nombre de usuario ya está registrado.","Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                Usuario nuevoUsuario = new Usuario(nombreUsuario, contra);
+                Usuario nuevoUsuario = new Usuario(nombreUsuario, contra, TipoUsuarioEnum.USUARIO);
                 arboles.insertarUsuario(nuevoUsuario);
                 JOptionPane.showMessageDialog(null, "Usuario registrado exitosamente.");
             }

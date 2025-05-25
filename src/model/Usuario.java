@@ -17,12 +17,16 @@ public class Usuario {
     private String nombreUsuario;
     private String password;
     private List<Libro> librosPrestados;
+    private TipoUsuarioEnum tipoUsuario;
 
-    public Usuario(String nombreUsuario, String password) {
+
+    public Usuario(String nombreUsuario, String password, TipoUsuarioEnum tipoUsuario) {    
         this.ID = autoincrementable++;
         this.nombreUsuario = nombreUsuario;
         this.password = password;
         this.librosPrestados = new ArrayList<Libro>();
+        this.tipoUsuario = tipoUsuario;
+
     }
 
     public int getID() {
@@ -73,6 +77,14 @@ public class Usuario {
                 return;
             }
         }
+    }
+
+    public TipoUsuarioEnum getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(TipoUsuarioEnum tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
 
     @Override

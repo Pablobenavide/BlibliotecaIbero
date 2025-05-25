@@ -7,6 +7,7 @@
 import controller.ArbolesController;
 import model.Usuario;
 import view.Pantalla;
+import model.TipoUsuarioEnum;
 
 
 /**
@@ -17,7 +18,7 @@ public class Main {
 
     public static void main(String[] args) {
         // Crear usuario administrador
-        Usuario admin = new Usuario("admin", "123456");
+        Usuario admin = new Usuario("admin", "123456", TipoUsuarioEnum.ADMINISTRADOR);
 
         // Obtener instancia del singleton y agregar usuario
         ArbolesController arboles = ArbolesController.getInstancia();

@@ -4,6 +4,12 @@
  */
 package view;
 
+import javax.swing.JOptionPane;
+
+import controller.ArbolesController;
+import model.TipoUsuarioEnum;
+import model.Usuario;
+
 /**
  *
  * @author pablo
@@ -126,7 +132,29 @@ public class RegistroDeAdministradores extends javax.swing.JFrame {
 
     private void btnRegisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisActionPerformed
         // TODO add your handling code here:
-        System.out.println("Aun sin funcionalidad");
+
+        String nombreUsuario = txtUsuarioC.getText().trim();
+        String contra = txtContrasenaC.getText().trim();
+
+        if (!nombreUsuario.isEmpty() && !contra.isEmpty()) {
+            ArbolesController arboles = ArbolesController.getInstancia();
+
+            // Verificar si ya existe el usuario
+            if (arboles.buscarUsuarioPorNombre(nombreUsuario) != null) {
+                JOptionPane.showMessageDialog(null, "El nombre de usuario ya está registrado.","Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                Usuario nuevoUsuario = new Usuario(nombreUsuario, contra, TipoUsuarioEnum.ADMINISTRADOR);
+                arboles.insertarUsuario(nuevoUsuario);
+                JOptionPane.showMessageDialog(null, "Administrador registrado exitosamente.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese un usuario y una contraseña.","Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        txtUsuarioC.setText("");
+        txtContrasenaC.setText("");
+        txtUsuarioC.requestFocus();
+        txtContrasenaC.requestFocus();
     }//GEN-LAST:event_btnRegisActionPerformed
 
     private void btninicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninicioActionPerformed
