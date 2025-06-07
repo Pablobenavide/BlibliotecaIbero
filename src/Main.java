@@ -9,28 +9,30 @@ import model.Usuario;
 import view.Pantalla;
 import model.TipoUsuarioEnum;
 
-
 /**
- *
+ * Clase principal que arranca la aplicación.
+ * 
  * @author pablo
  */
 public class Main {
 
     public static void main(String[] args) {
-        // Crear usuario administrador
+        // Crear un usuario de tipo ADMINISTRADOR con nombre "admin" y contraseña "123456"
         Usuario admin = new Usuario("admin", "123456", TipoUsuarioEnum.ADMINISTRADOR);
 
-        // Obtener instancia del singleton y agregar usuario
+        // Obtener la instancia única (singleton) del controlador ArbolesController
         ArbolesController arboles = ArbolesController.getInstancia();
+
+        // Insertar el usuario administrador en el sistema (posiblemente en una estructura como un árbol)
         arboles.insertarUsuario(admin);
 
-        // Mostrar interfaz gráfica
+        // Crear y mostrar la interfaz gráfica principal
         Pantalla inter = new Pantalla();
-        inter.setVisible(true);
-        inter.setLocationRelativeTo(null);
-        inter.setResizable(false);
+        inter.setVisible(true); // Hace visible la ventana
+        inter.setLocationRelativeTo(null); // Centra la ventana en la pantalla
+        inter.setResizable(false); // Evita que el usuario pueda redimensionar la ventana
     }
-
+}
 
     
 }
