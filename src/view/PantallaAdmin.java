@@ -169,72 +169,72 @@ public class PantallaAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        ModificarLibros modi = new ModificarLibros();
-        modi.setVisible(true);
-        modi.setResizable(false);
-        modi.setLocationRelativeTo(null);
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    // Abrir la ventana para modificar libros
+    ModificarLibros modi = new ModificarLibros();
+    modi.setVisible(true);
+    modi.setResizable(false);
+    modi.setLocationRelativeTo(null);
+    this.setVisible(false);
+}//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        EliminarLibro elimi = new EliminarLibro();
-        elimi.setVisible(true);
-        elimi.setResizable(false);
-        elimi.setLocationRelativeTo(null);
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton3ActionPerformed
+private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    // Abrir la ventana para eliminar un libro
+    EliminarLibro elimi = new EliminarLibro();
+    elimi.setVisible(true);
+    elimi.setResizable(false);
+    elimi.setLocationRelativeTo(null);
+    this.setVisible(false);
+}//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        verLibro verLi = new verLibro();
-        verLi.setVisible(true);
-        verLi.setResizable(false);
-        verLi.setLocationRelativeTo(null);
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton4ActionPerformed
+private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    // Abrir la ventana para visualizar libros
+    verLibro verLi = new verLibro();
+    verLi.setVisible(true);
+    verLi.setResizable(false);
+    verLi.setLocationRelativeTo(null);
+    this.setVisible(false);
+}//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-        EliminarUsuario elimiUs = new EliminarUsuario();
-        elimiUs.setVisible(true);
-        elimiUs.setResizable(false);
-        elimiUs.setLocationRelativeTo(null);
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton5ActionPerformed
+private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    // Abrir la ventana para eliminar usuarios
+    EliminarUsuario elimiUs = new EliminarUsuario();
+    elimiUs.setVisible(true);
+    elimiUs.setResizable(false);
+    elimiUs.setLocationRelativeTo(null);
+    this.setVisible(false);
+}//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-        Pantalla inter = new Pantalla();
-        inter.setVisible(true);
-        inter.setLocationRelativeTo(null);
-        inter.setResizable(false);
-        this.setVisible(false);
-        System.out.println("Adios");
-    }//GEN-LAST:event_jButton6ActionPerformed
+private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    // Volver a la pantalla principal o de inicio
+    Pantalla inter = new Pantalla();
+    inter.setVisible(true);
+    inter.setLocationRelativeTo(null);
+    inter.setResizable(false);
+    this.setVisible(false);
+    System.out.println("Adios");
+}//GEN-LAST:event_jButton6ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        RegistrarLibro regisli = new RegistrarLibro();
-        regisli.setVisible(true);
-        regisli.setResizable(false);
-        regisli.setLocationRelativeTo(null);
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    // Abrir la ventana para registrar un nuevo libro
+    RegistrarLibro regisli = new RegistrarLibro();
+    regisli.setVisible(true);
+    regisli.setResizable(false);
+    regisli.setLocationRelativeTo(null);
+    this.setVisible(false);
+}//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    // Actualmente sin implementación; puede usarse para futuras funcionalidades
+}//GEN-LAST:event_jButton7ActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-        RegistroDeAdministradores regisAdmin = new RegistroDeAdministradores();
-        regisAdmin.setVisible(true);
-        regisAdmin.setResizable(false);
-        regisAdmin.setLocationRelativeTo(null);
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton8ActionPerformed
+private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    // Abrir la ventana para registrar administradores
+    RegistroDeAdministradores regisAdmin = new RegistroDeAdministradores();
+    regisAdmin.setVisible(true);
+    regisAdmin.setResizable(false);
+    regisAdmin.setLocationRelativeTo(null);
+    this.setVisible(false);
+}//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments
