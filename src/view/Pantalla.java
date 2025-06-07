@@ -221,66 +221,76 @@ public class Pantalla extends javax.swing.JFrame {
         // TODO add your handling code here:
     }// GEN-LAST:event_btnLoginMouseClicked
 
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
+   private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnLoginActionPerformed
+    // Obtener los valores ingresados por el usuario en los campos de texto
+    String nombre = txtUsuario.getText();
+    String contra = txtContrasena.getText();
 
-        // Método para obtener usuario y contraseña ingresados en registro
-        String nombre = txtUsuario.getText();
-        String contra = txtContrasena.getText();
+    // Obtener la instancia singleton del controlador para manejar usuarios y libros
+    ArbolesController arboles = ArbolesController.getInstancia();
 
-        // Obtener instancia del singleton
-        ArbolesController arboles = ArbolesController.getInstancia();
+    // Buscar el usuario por su nombre
+    Usuario usuario = arboles.buscarUsuarioPorNombre(nombre);
 
-        // Buscar usuario
-        Usuario usuario = arboles.buscarUsuarioPorNombre(nombre);
+    // Verificar que el usuario exista y la contraseña sea correcta
+    if (usuario != null && usuario.getPassword().equals(contra)) {
+        // Establecer el usuario actual en el controlador (sesión iniciada)
+        arboles.setUsuarioActual(usuario);
 
-        if (usuario != null && usuario.getPassword().equals(contra)) {
-            arboles.setUsuarioActual(usuario); // establecer usuario actual
-
-            if (usuario.getTipoUsuario() == model.TipoUsuarioEnum.ADMINISTRADOR) {
-                // Si el usuario es administrador, mostrar menú de administrador
-                PantallaAdmin ingre = new PantallaAdmin();
-                ingre.setVisible(true);
-                ingre.setResizable(false);
-                ingre.setLocationRelativeTo(null);
-                this.setVisible(false);
-                JOptionPane.showMessageDialog(null, "Bienvenido administrador.");
-                System.out.println("Ingreso exitoso");
-            } else {
-                // Si es un usuario regular, mostrar menú de usuario autenticado
-                Panta1 pantausu = new Panta1();
-                pantausu.setVisible(true);
-                pantausu.setResizable(false);
-                pantausu.setLocationRelativeTo(null);
-                this.setVisible(false);
-                JOptionPane.showMessageDialog(null, "Bienvenido a la biblioteca " + nombre);
-                System.out.println("Ingreso exitoso");
-            }
+        if (usuario.getTipoUsuario() == model.TipoUsuarioEnum.ADMINISTRADOR) {
+            // Usuario administrador: mostrar pantalla de administración
+            PantallaAdmin ingre = new PantallaAdmin();
+            ingre.setVisible(true);
+            ingre.setResizable(false);
+            ingre.setLocationRelativeTo(null);
+            this.setVisible(false);
+            JOptionPane.showMessageDialog(null, "Bienvenido administrador.");
+            System.out.println("Ingreso exitoso");
         } else {
-            JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+            // Usuario normal: mostrar pantalla principal de usuario
+            Panta1 pantausu = new Panta1();
+            pantausu.setVisible(true);
+            pantausu.setResizable(false);
+            pantausu.setLocationRelativeTo(null);
+            this.setVisible(false);
+            JOptionPane.showMessageDialog(null, "Bienvenido a la biblioteca " + nombre);
+            System.out.println("Ingreso exitoso");
         }
+    } else {
+        // Usuario no encontrado o contraseña incorrecta
+        JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+    }
 
-        // Limpiar campos y devolver el foco
-        txtUsuario.setText("");
-        txtContrasena.setText("");
-        txtUsuario.requestFocus();
+    // Limpiar los campos de texto y poner el foco para nuevo ingreso
+    txtUsuario.setText("");
+    txtContrasena.setText("");
+    txtUsuario.requestFocus();
 
-    }// GEN-LAST:event_btnLoginActionPerformed
+    // SUGERENCIAS DE MEJORA:
+    // 1. Encriptar las contraseñas almacenadas para mejorar la seguridad.
+    // 2. Implementar un límite de intentos de login para evitar ataques de fuerza bruta.
+    // 3. Mostrar mensajes de error más específicos o utilizar logs para registro de accesos fallidos.
+    // 4. Validar que los campos no estén vacíos antes de procesar el login para mejorar la UX.
+    // 5. Considerar usar un sistema de sesiones para gestionar usuarios autenticados a nivel global.
+}// GEN-LAST:event_btnLoginActionPerformed
 
-    private void btnRegistrarMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_btnRegistrarMouseClicked
-        // TODO add your handling code here:
-    }// GEN-LAST:event_btnRegistrarMouseClicked
 
-    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnRegistrarActionPerformed
-        // TODO add your handling code here:
-        Registro regis = new Registro();
-        regis.setVisible(true);
-        regis.setLocationRelativeTo(null);
-        regis.setResizable(false);
-        this.setVisible(false);
+private void btnRegistrarMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_btnRegistrarMouseClicked
+    // Actualmente sin funcionalidad, se puede usar para algún evento adicional al hacer clic en Registrar
+}// GEN-LAST:event_btnRegistrarMouseClicked
 
-    }// GEN-LAST:event_btnRegistrarActionPerformed
 
+private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnRegistrarActionPerformed
+    // Abrir la ventana de registro para crear un nuevo usuario
+    Registro regis = new Registro();
+    regis.setVisible(true);
+    regis.setLocationRelativeTo(null);
+    regis.setResizable(false);
+    this.setVisible(false);
+
+    // SUGERENCIA:
+    // Validar que la ventana de registro tenga controles para evitar registros duplicados y validar datos.
+}// GEN-LAST:event_btnRegistrarActionPerformed
     /**
      * @param args the command line arguments
      */
