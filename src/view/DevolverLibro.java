@@ -151,53 +151,67 @@ public class DevolverLibro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here: // TODO add your handling code here:
+// Evento que se ejecuta al hacer clic en el botón jButton1 (probablemente botón "Ingresar" o "Continuar")
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+    // Se crea una nueva instancia de la ventana Panta1 (interfaz de usuario principal)
+    Panta1 pantausu = new Panta1();
+    pantausu.setVisible(true);             // Muestra la nueva ventana
+    pantausu.setResizable(false);          // Impide que el usuario cambie el tamaño
+    pantausu.setLocationRelativeTo(null);  // Centra la ventana en la pantalla
+    this.setVisible(false);                // Oculta la ventana actual (pantalla de inicio o login)
+}// GEN-LAST:event_jButton1ActionPerformed
 
-        Panta1 pantausu = new Panta1();
-        pantausu.setVisible(true);
-        pantausu.setResizable(false);
-        pantausu.setLocationRelativeTo(null);
-        this.setVisible(false);
-    }// GEN-LAST:event_jButton1ActionPerformed
 
     private void txtIdLibroActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtIdLibroActionPerformed
         // TODO add your handling code here:
     }// GEN-LAST:event_txtIdLibroActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        String entrada = txtIdLibro.getText().trim();
-        Libro libro = null;
+   private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
+    // Obtiene el texto del campo de entrada (ID o nombre del libro) y lo limpia de espacios
+    String entrada = txtIdLibro.getText().trim();
+    Libro libro = null;
 
-        ArbolesController arboles = ArbolesController.getInstancia();
+    // Obtiene la instancia única del controlador ArbolesController
+    ArbolesController arboles = ArbolesController.getInstancia();
 
-        try {
-            int id = Integer.parseInt(entrada);
-            libro = arboles.buscarLibroPorID(id);
-        } catch (NumberFormatException e) {
-            libro = arboles.buscarLibroPorNombre(entrada);
-        }
+    try {
+        // Intenta convertir la entrada a un número para buscar por ID
+        int id = Integer.parseInt(entrada);
+        libro = arboles.buscarLibroPorID(id);
+    } catch (NumberFormatException e) {
+        // Si no es un número, busca por nombre del libro
+        libro = arboles.buscarLibroPorNombre(entrada);
+    }
 
-        if (libro != null && !libro.getEstado()) {
-            arboles.cambiarEstadoLibroPorID(libro.getID());
+    // Verifica si el libro fue encontrado y está prestado (estado = false)
+    if (libro != null && !libro.getEstado()) {
+        // Cambia el estado del libro a "disponible" (estado = true)
+        arboles.cambiarEstadoLibroPorID(libro.getID());
 
-            Usuario usuarioActual = arboles.getUsuarioActual();
-            if (usuarioActual != null) {
-                usuarioActual.retirarLibroPrestado(libro.getID());
-                JOptionPane.showMessageDialog(null, "El libro se ha devuelto, gracias :)");
-            } else {
-                JOptionPane.showMessageDialog(null, "No hay un usuario autenticado.","Error", JOptionPane.ERROR_MESSAGE);
-            }
+        // Obtiene el usuario que está actualmente usando el sistema
+        Usuario usuarioActual = arboles.getUsuarioActual();
 
+        if (usuarioActual != null) {
+            // Elimina el libro de la lista de libros prestados del usuario
+            usuarioActual.retirarLibroPrestado(libro.getID());
+
+            // Muestra mensaje de confirmación
+            JOptionPane.showMessageDialog(null, "El libro se ha devuelto, gracias :)");
         } else {
-            JOptionPane.showMessageDialog(null, "El libro no existe o ya fue devuelto.","Error", JOptionPane.ERROR_MESSAGE);
+            // Si no hay un usuario activo, muestra error
+            JOptionPane.showMessageDialog(null, "No hay un usuario autenticado.", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
-        txtIdLibro.setText("");
-        txtIdLibro.requestFocus();
+    } else {
+        // Si el libro no existe o ya fue devuelto, muestra error
+        JOptionPane.showMessageDialog(null, "El libro no existe o ya fue devuelto.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
 
-    }// GEN-LAST:event_jButton2ActionPerformed
+    // Limpia el campo de texto y le devuelve el foco para ingresar otro ID o nombre
+    txtIdLibro.setText("");
+    txtIdLibro.requestFocus();
+
+}// GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
