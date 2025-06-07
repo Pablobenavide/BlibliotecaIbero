@@ -165,44 +165,60 @@ public class EliminarUsuario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        PantallaAdmin ingre = new PantallaAdmin();
-        ingre.setVisible(true);
-        ingre.setResizable(false);
-        ingre.setLocationRelativeTo(null);
-        this.setVisible(false);
-    }// GEN-LAST:event_jButton1ActionPerformed
+// Evento que se ejecuta al hacer clic en jButton1 (probablemente un botón como "Administrar Usuarios")
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+    // Crea una nueva instancia de la ventana del administrador
+    PantallaAdmin ingre = new PantallaAdmin();
+    ingre.setVisible(true);             // Muestra la ventana
+    ingre.setResizable(false);          // Evita que el usuario redimensione la ventana
+    ingre.setLocationRelativeTo(null);  // Centra la ventana en la pantalla
+    this.setVisible(false);             // Oculta la ventana actual
+
+    // SUGERENCIA: Puedes validar si la ventana ya está abierta antes de crear una nueva instancia
+    // para evitar múltiples ventanas duplicadas abiertas al mismo tiempo.
+}// GEN-LAST:event_jButton1ActionPerformed
+
 
     private void txtNombreUsuarioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtNombreUsuarioActionPerformed
         // TODO add your handling code here:
     }// GEN-LAST:event_txtNombreUsuarioActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        String idString = txtNombreUsuario.getText();
+   // Evento que se ejecuta al hacer clic en jButton2 (probablemente un botón "Eliminar Usuario")
+private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
+    // Captura el texto del campo de entrada
+    String idString = txtNombreUsuario.getText();
 
-        int id;
-        try {
-            id = Integer.parseInt(idString);
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "No existe el ID indicado", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+    int id;
+    try {
+        // Intenta convertir el texto a un número entero
+        id = Integer.parseInt(idString);
+    } catch (NumberFormatException e) {
+        // Muestra un mensaje si el texto no es un número válido
+        JOptionPane.showMessageDialog(this, "No existe el ID indicado", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
 
-        // Obtener instancia del singleton
-        ArbolesController arboles = ArbolesController.getInstancia();
+    // Obtener instancia del controlador
+    ArbolesController arboles = ArbolesController.getInstancia();
 
-        // Eliminar usuario por ID
-        arboles.eliminarUsuario(id);
+    // Elimina el usuario con el ID ingresado
+    arboles.eliminarUsuario(id);
 
-        JOptionPane.showMessageDialog(null, "Usuario eliminado de forma exitosa");
+    // Muestra mensaje de éxito
+    JOptionPane.showMessageDialog(null, "Usuario eliminado de forma exitosa");
 
-        // Limpiar campos
-        txtNombreUsuario.setText("");
-        txtNombreUsuario.requestFocus();
+    // Limpia el campo de texto y lo enfoca nuevamente
+    txtNombreUsuario.setText("");
+    txtNombreUsuario.requestFocus();
 
-    }// GEN-LAST:event_jButton2ActionPerformed
+    // SUGERENCIAS DE MEJORA:
+    // 1. Validar si el usuario realmente existe antes de eliminarlo y mostrar un mensaje específico si no.
+    // 2. Agregar una ventana de confirmación antes de eliminar definitivamente (por ejemplo: "¿Está seguro que desea eliminar este usuario?")
+    // 3. Permitir buscar y eliminar por nombre de usuario además del ID.
+    // 4. Registrar las acciones en un archivo o base de datos para llevar control de cambios (logs).
+    // 5. Mostrar los datos del usuario antes de eliminarlo para evitar errores (por ejemplo, confirmar que es el correcto).
+    // 6. Manejar excepciones si el controlador falla al intentar eliminar (por ejemplo, si hay error de conexión).
+}// GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
