@@ -227,50 +227,50 @@ public class RegistrarLibro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        PantallaAdmin ingre = new PantallaAdmin();
-        ingre.setVisible(true);
-        ingre.setResizable(false);
-        ingre.setLocationRelativeTo(null);
-        this.setVisible(false);
-    }// GEN-LAST:event_jButton1ActionPerformed
+   private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+    // Acción para regresar al menú principal del administrador
+    PantallaAdmin ingre = new PantallaAdmin();
+    ingre.setVisible(true);
+    ingre.setResizable(false);
+    ingre.setLocationRelativeTo(null); // Centrar la ventana
+    this.setVisible(false); // Ocultar la ventana actual
+}// GEN-LAST:event_jButton1ActionPerformed
 
-    private void txtNameLActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtNameLActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_txtNameLActionPerformed
+private void txtNameLActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtNameLActionPerformed
+}// GEN-LAST:event_txtNameLActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
-        String nombre = txtNameL.getText();
-        String autor = txtAutorL.getText();
-        String descripcion = txtDescriL.getText();
+private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
+    // Acción del botón "Registrar libro"
 
-        Libro nuevoLibro = new Libro(nombre, autor, descripcion);
+    String nombre = txtNameL.getText();           // Obtener nombre del libro
+    String autor = txtAutorL.getText();           // Obtener autor del libro
+    String descripcion = txtDescriL.getText();    // Obtener descripción del libro
 
-        // Obtener la instancia singleton del controlador
-        ArbolesController arboles = ArbolesController.getInstancia();
+    Libro nuevoLibro = new Libro(nombre, autor, descripcion); // Crear instancia del libro
 
-        // Insertar el nuevo libro
-        arboles.insertarLibro(nuevoLibro);
+    // Obtener la instancia del controlador Singleton
+    ArbolesController arboles = ArbolesController.getInstancia();
 
-        JOptionPane.showInternalMessageDialog(null, "Libro \"" + nombre + "\" registrado exitosamente :)");
-        System.out.println("Libro registrado exitosamente");
+    // Insertar libro en la estructura de datos
+    arboles.insertarLibro(nuevoLibro);
 
-        // Limpiar campos y dar foco
-        txtNameL.setText("");
-        txtAutorL.setText("");
-        txtDescriL.setText("");
-        txtNameL.requestFocus();
+    // Mostrar mensaje de éxito
+    JOptionPane.showInternalMessageDialog(null, "Libro \"" + nombre + "\" registrado exitosamente :)");
+    System.out.println("Libro registrado exitosamente");
 
-    }// GEN-LAST:event_jButton2ActionPerformed
+    // Limpiar campos y dar foco
+    txtNameL.setText("");
+    txtAutorL.setText("");
+    txtDescriL.setText("");
+    txtNameL.requestFocus(); // Enfocar de nuevo el primer campo
 
-    private void txtAutorLActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtAutorLActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_txtAutorLActionPerformed
+}// GEN-LAST:event_jButton2ActionPerformed
 
-    private void txtDescriLActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtDescriLActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_txtDescriLActionPerformed
+private void txtAutorLActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtAutorLActionPerformed
+}// GEN-LAST:event_txtAutorLActionPerformed
+
+private void txtDescriLActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtDescriLActionPerformed
+}// GEN-LAST:event_txtDescriLActionPerformed
 
     /**
      * @param args the command line arguments
