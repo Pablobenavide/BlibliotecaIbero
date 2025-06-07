@@ -116,42 +116,54 @@ public class Panta1 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        Pantalla inter = new Pantalla();
-        inter.setVisible(true);
-        inter.setLocationRelativeTo(null);
-        inter.setResizable(false);
-        this.setVisible(false);
-        System.out.println("Adios");
-    }//GEN-LAST:event_jButton4ActionPerformed
+   // Evento que se ejecuta al hacer clic en jButton4 (probablemente para volver a la pantalla principal)
+private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    // Crear y mostrar la ventana principal (Pantalla)
+    Pantalla inter = new Pantalla();
+    inter.setVisible(true);
+    inter.setLocationRelativeTo(null);  // Centrar en pantalla
+    inter.setResizable(false);           // No permitir cambiar tamaño
+    this.setVisible(false);              // Ocultar ventana actual
+    System.out.println("Adios");         // Mensaje en consola para seguimiento
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        VerLibroUs verLi = new VerLibroUs();
-        verLi.setVisible(true);
-        verLi.setLocationRelativeTo(null);
-        verLi.setResizable(false);
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    // SUGERENCIA: Podrías usar logs en vez de System.out para mejor control y nivel de mensajes.
+}//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        PedirLibro pedirLi = new PedirLibro();
-        pedirLi.setVisible(true);
-        pedirLi.setLocationRelativeTo(null);
-        pedirLi.setResizable(false);
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton2ActionPerformed
+// Evento que se ejecuta al hacer clic en jButton1 (ver libros para usuario)
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    // Crear y mostrar ventana para ver libros
+    VerLibroUs verLi = new VerLibroUs();
+    verLi.setVisible(true);
+    verLi.setLocationRelativeTo(null);
+    verLi.setResizable(false);
+    this.setVisible(false);
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        DevolverLibro devolver = new DevolverLibro();
-        devolver.setVisible(true);
-        devolver.setLocationRelativeTo(null);
-        devolver.setResizable(false);
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    // SUGERENCIA: Considera manejar la navegación mediante un gestor de ventanas para evitar duplicar ventanas abiertas.
+}//GEN-LAST:event_jButton1ActionPerformed
+
+// Evento que se ejecuta al hacer clic en jButton2 (pantalla para pedir libro)
+private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    // Crear y mostrar ventana para pedir libro
+    PedirLibro pedirLi = new PedirLibro();
+    pedirLi.setVisible(true);
+    pedirLi.setLocationRelativeTo(null);
+    pedirLi.setResizable(false);
+    this.setVisible(false);
+
+    // SUGERENCIA: Podrías implementar validaciones para asegurarte que el usuario está autenticado antes de permitir pedir un libro.
+}//GEN-LAST:event_jButton2ActionPerformed
+
+// Evento que se ejecuta al hacer clic en jButton3 (pantalla para devolver libro)
+private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    // Crear y mostrar ventana para devolver libro
+    DevolverLibro devolver = new DevolverLibro();
+    devolver.setVisible(true);
+    devolver.setLocationRelativeTo(null);
+    devolver.setResizable(false);
+    this.setVisible(false);
+
+    // SUGERENCIA: Para mejor experiencia, podrías mostrar un resumen del estado actual de los préstamos antes de devolver.
+}//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
