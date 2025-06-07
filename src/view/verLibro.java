@@ -167,43 +167,60 @@ public class verLibro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        PantallaAdmin ingre = new PantallaAdmin();
-        ingre.setVisible(true);
-        ingre.setResizable(false);
-        ingre.setLocationRelativeTo(null);
-        this.setVisible(false);
-    }// GEN-LAST:event_jButton1ActionPerformed
+   private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+    // Crea una nueva instancia de la pantalla del administrador
+    PantallaAdmin ingre = new PantallaAdmin();
 
-    private void txtIdBusActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtIdBusActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_txtIdBusActionPerformed
+    // Muestra la nueva ventana
+    ingre.setVisible(true);
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
-        String entrada = txtIdBus.getText().trim();
+    // Impide que se redimensione la ventana
+    ingre.setResizable(false);
 
-        ArbolesController arboles = ArbolesController.getInstancia();
-        Libro libroEncontrado = null;
+    // Centra la ventana en la pantalla
+    ingre.setLocationRelativeTo(null);
 
-        try {
-            int id = Integer.parseInt(entrada);
-            libroEncontrado = arboles.buscarLibroPorID(id);
-        } catch (NumberFormatException e) {
-            libroEncontrado = arboles.buscarLibroPorNombre(entrada);
-        }
+    // Oculta la ventana actual
+    this.setVisible(false);
+}// GEN-LAST:event_jButton1ActionPerformed
 
-        if (libroEncontrado != null) {
-            txtMosLi.setText("ID: " + libroEncontrado.getID() + "\n"
-                    + "Nombre: " + libroEncontrado.getNombre() + "\n"
-                    + "Autor: " + libroEncontrado.getAutor() + "\n"
-                    + "Descripción: " + libroEncontrado.getDescripcion() + "\n"
-                    + "Estado: " + (libroEncontrado.getEstado() ? "Disponible" : "Prestado"));
-        } else {
-            JOptionPane.showMessageDialog(this, "No se encontró ningún libro con ese ID o nombre.", "Error",
-                    JOptionPane.ERROR_MESSAGE);
-        }
-    }// GEN-LAST:event_jButton2ActionPerformed
+private void txtIdBusActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtIdBusActionPerformed
+}// GEN-LAST:event_txtIdBusActionPerformed
+
+private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
+    // Obtener el texto ingresado por el usuario
+    String entrada = txtIdBus.getText().trim();
+
+    // Obtener la instancia singleton del controlador
+    ArbolesController arboles = ArbolesController.getInstancia();
+
+    // Variable para guardar el libro encontrado
+    Libro libroEncontrado = null;
+
+    try {
+        // Si la entrada es un número, se busca por ID
+        int id = Integer.parseInt(entrada);
+        libroEncontrado = arboles.buscarLibroPorID(id);
+    } catch (NumberFormatException e) {
+        // Si no es un número, se busca por nombre
+        libroEncontrado = arboles.buscarLibroPorNombre(entrada);
+    }
+
+    // Si se encontró un libro
+    if (libroEncontrado != null) {
+        // Mostrar información del libro en un área de texto
+        txtMosLi.setText("ID: " + libroEncontrado.getID() + "\n"
+                + "Nombre: " + libroEncontrado.getNombre() + "\n"
+                + "Autor: " + libroEncontrado.getAutor() + "\n"
+                + "Descripción: " + libroEncontrado.getDescripcion() + "\n"
+                + "Estado: " + (libroEncontrado.getEstado() ? "Disponible" : "Prestado"));
+    } else {
+        // Si no se encontró, mostrar mensaje de error
+        JOptionPane.showMessageDialog(this, "No se encontró ningún libro con ese ID o nombre.", "Error",
+                JOptionPane.ERROR_MESSAGE);
+    }
+}// GEN-LAST:event_jButton2ActionPerformed
+
 
     /**
      * @param args the command line arguments
