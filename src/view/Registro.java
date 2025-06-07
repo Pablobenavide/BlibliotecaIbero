@@ -180,40 +180,47 @@ public class Registro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }// GEN-LAST:event_txtUsuarioCActionPerformed
 
-    private void btnRegisActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnRegisActionPerformed
-        String nombreUsuario = txtUsuarioC.getText().trim();
-        String contra = txtContrasenaC.getText().trim();
+   private void btnRegisActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnRegisActionPerformed
+    // Obtener los valores ingresados por el usuario, quitando espacios en blanco
+    String nombreUsuario = txtUsuarioC.getText().trim();
+    String contra = txtContrasenaC.getText().trim();
 
-        if (!nombreUsuario.isEmpty() && !contra.isEmpty()) {
-            ArbolesController arboles = ArbolesController.getInstancia();
+    // Verificar que ambos campos no estén vacíos
+    if (!nombreUsuario.isEmpty() && !contra.isEmpty()) {
+        ArbolesController arboles = ArbolesController.getInstancia();
 
-            // Verificar si ya existe el usuario
-            if (arboles.buscarUsuarioPorNombre(nombreUsuario) != null) {
-                JOptionPane.showMessageDialog(null, "El nombre de usuario ya está registrado.","Error", JOptionPane.ERROR_MESSAGE);
-            } else {
-                Usuario nuevoUsuario = new Usuario(nombreUsuario, contra, TipoUsuarioEnum.USUARIO);
-                arboles.insertarUsuario(nuevoUsuario);
-                JOptionPane.showMessageDialog(null, "Usuario registrado exitosamente.");
-            }
+        // Verificar si el nombre de usuario ya está registrado
+        if (arboles.buscarUsuarioPorNombre(nombreUsuario) != null) {
+            JOptionPane.showMessageDialog(null, "El nombre de usuario ya está registrado.","Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(null, "Por favor, ingrese un usuario y una contraseña.","Error", JOptionPane.ERROR_MESSAGE);
+            // Crear un nuevo objeto Usuario con tipo USUARIO
+            Usuario nuevoUsuario = new Usuario(nombreUsuario, contra, TipoUsuarioEnum.USUARIO);
+
+            // Insertarlo en la estructura de control
+            arboles.insertarUsuario(nuevoUsuario);
+            JOptionPane.showMessageDialog(null, "Usuario registrado exitosamente.");
         }
+    } else {
+        // Mostrar error si hay campos vacíos
+        JOptionPane.showMessageDialog(null, "Por favor, ingrese un usuario y una contraseña.","Error", JOptionPane.ERROR_MESSAGE);
+    }
 
-        txtUsuarioC.setText("");
-        txtContrasenaC.setText("");
-        txtUsuarioC.requestFocus();
-        txtContrasenaC.requestFocus();
+    // Limpiar campos y devolver el foco
+    txtUsuarioC.setText("");
+    txtContrasenaC.setText("");
+    txtUsuarioC.requestFocus();
+    txtContrasenaC.requestFocus();
 
-    }// GEN-LAST:event_btnRegisActionPerformed
+}// GEN-LAST:event_btnRegisActionPerformed
 
-    private void btninicioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btninicioActionPerformed
-        // TODO add your handling code here:
-        Pantalla inter = new Pantalla();
-        inter.setVisible(true);
-        inter.setLocationRelativeTo(null);
-        inter.setResizable(false);
-        this.setVisible(false);
-    }// GEN-LAST:event_btninicioActionPerformed
+private void btninicioActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btninicioActionPerformed
+    // Volver a la pantalla principal
+    Pantalla inter = new Pantalla();
+    inter.setVisible(true);
+    inter.setLocationRelativeTo(null); // Centrar la ventana
+    inter.setResizable(false);
+    this.setVisible(false); // Ocultar esta ventana
+}// GEN-LAST:event_btninicioActionPerformed
 
     /**
      * @param args the command line arguments
