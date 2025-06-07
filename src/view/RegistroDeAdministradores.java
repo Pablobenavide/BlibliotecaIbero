@@ -131,40 +131,46 @@ public class RegistroDeAdministradores extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsuarioCActionPerformed
 
     private void btnRegisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisActionPerformed
-        // TODO add your handling code here:
+    // Obtener nombre de usuario y contraseña desde los campos de texto, eliminando espacios en blanco
+    String nombreUsuario = txtUsuarioC.getText().trim();
+    String contra = txtContrasenaC.getText().trim();
 
-        String nombreUsuario = txtUsuarioC.getText().trim();
-        String contra = txtContrasenaC.getText().trim();
+    // Verificar que ambos campos no estén vacíos
+    if (!nombreUsuario.isEmpty() && !contra.isEmpty()) {
+        // Obtener instancia del controlador (singleton)
+        ArbolesController arboles = ArbolesController.getInstancia();
 
-        if (!nombreUsuario.isEmpty() && !contra.isEmpty()) {
-            ArbolesController arboles = ArbolesController.getInstancia();
-
-            // Verificar si ya existe el usuario
-            if (arboles.buscarUsuarioPorNombre(nombreUsuario) != null) {
-                JOptionPane.showMessageDialog(null, "El nombre de usuario ya está registrado.","Error", JOptionPane.ERROR_MESSAGE);
-            } else {
-                Usuario nuevoUsuario = new Usuario(nombreUsuario, contra, TipoUsuarioEnum.ADMINISTRADOR);
-                arboles.insertarUsuario(nuevoUsuario);
-                JOptionPane.showMessageDialog(null, "Administrador registrado exitosamente.");
-            }
+        // Verificar si ya existe un usuario con ese nombre
+        if (arboles.buscarUsuarioPorNombre(nombreUsuario) != null) {
+            JOptionPane.showMessageDialog(null, "El nombre de usuario ya está registrado.","Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(null, "Por favor, ingrese un usuario y una contraseña.","Error", JOptionPane.ERROR_MESSAGE);
+            // Crear un nuevo administrador y registrarlo
+            Usuario nuevoUsuario = new Usuario(nombreUsuario, contra, TipoUsuarioEnum.ADMINISTRADOR);
+            arboles.insertarUsuario(nuevoUsuario);
+            JOptionPane.showMessageDialog(null, "Administrador registrado exitosamente.");
         }
+    } else {
+        // Mostrar error si algún campo está vacío
+        JOptionPane.showMessageDialog(null, "Por favor, ingrese un usuario y una contraseña.","Error", JOptionPane.ERROR_MESSAGE);
+    }
 
-        txtUsuarioC.setText("");
-        txtContrasenaC.setText("");
-        txtUsuarioC.requestFocus();
-        txtContrasenaC.requestFocus();
-    }//GEN-LAST:event_btnRegisActionPerformed
+    // Limpiar los campos de entrada y devolver el foco
+    txtUsuarioC.setText("");
+    txtContrasenaC.setText("");
+    txtUsuarioC.requestFocus();
+    txtContrasenaC.requestFocus();
 
-    private void btninicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninicioActionPerformed
-        // TODO add your handling code here:
-        PantallaAdmin ingre = new PantallaAdmin();
-        ingre.setVisible(true);
-        ingre.setResizable(false);
-        ingre.setLocationRelativeTo(null);
-        this.setVisible(false);
-    }//GEN-LAST:event_btninicioActionPerformed
+}//GEN-LAST:event_btnRegisActionPerformed
+
+private void btninicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninicioActionPerformed
+    // Abrir la pantalla de administrador y cerrar la actual
+    PantallaAdmin ingre = new PantallaAdmin();
+    ingre.setVisible(true);
+    ingre.setResizable(false);
+    ingre.setLocationRelativeTo(null);
+    this.setVisible(false);
+}//GEN-LAST:event_btninicioActionPerformed
+
 
     /**
      * @param args the command line arguments
