@@ -261,61 +261,83 @@ public class ModificarLibros extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        PantallaAdmin ingre = new PantallaAdmin();
-        ingre.setVisible(true);
-        ingre.setResizable(false);
-        ingre.setLocationRelativeTo(null);
-        this.setVisible(false);
-    }// GEN-LAST:event_jButton1ActionPerformed
+   // Evento que se ejecuta al hacer clic en jButton1 (probablemente para abrir la pantalla de administración)
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+    // Crear instancia de la ventana de administración
+    PantallaAdmin ingre = new PantallaAdmin();
+    ingre.setVisible(true);             // Mostrar la ventana
+    ingre.setResizable(false);          // Evitar que el usuario cambie tamaño
+    ingre.setLocationRelativeTo(null);  // Centrar en pantalla
+    this.setVisible(false);             // Ocultar ventana actual
 
-    private void txtIdLibroActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtIdLibroActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_txtIdLibroActionPerformed
+    // SUGERENCIA: Evitar abrir múltiples instancias de PantallaAdmin verificando si ya está abierta.
+}// GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        String idString = txtIdLibro.getText();
-        String nombre = txtNombr.getText();
-        String autor = txtAutor.getText();
-        String descripcion = txtDescrip.getText();
+// Evento disparado al presionar Enter en el campo txtIdLibro (vacío actualmente)
+private void txtIdLibroActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtIdLibroActionPerformed
+    // SUGERENCIA: Podrías aprovechar este evento para ejecutar la edición sin necesidad de pulsar el botón.
+}// GEN-LAST:event_txtIdLibroActionPerformed
 
-        int id;
-        try {
-            id = Integer.parseInt(idString);
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "El ID del libro debe ser un número.", "Error",
-                    JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+// Evento que se ejecuta al hacer clic en jButton2 (editar libro)
+private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
+    // Obtener los datos ingresados por el usuario en los campos de texto
+    String idString = txtIdLibro.getText();
+    String nombre = txtNombr.getText();
+    String autor = txtAutor.getText();
+    String descripcion = txtDescrip.getText();
 
-        // Obtener instancia del controlador
-        ArbolesController arboles = ArbolesController.getInstancia();
+    int id;
+    try {
+        // Intentar convertir el ID ingresado a entero
+        id = Integer.parseInt(idString);
+    } catch (NumberFormatException e) {
+        // Mostrar error si el ID no es un número válido
+        JOptionPane.showMessageDialog(this, "El ID del libro debe ser un número.", "Error",
+                JOptionPane.ERROR_MESSAGE);
+        return; // Salir del método si el ID no es válido
+    }
 
-        // Buscar el libro por ID
-        Libro libro = arboles.buscarLibroPorID(id);
+    // Obtener instancia del controlador (singleton)
+    ArbolesController arboles = ArbolesController.getInstancia();
 
-        if (libro != null) {
-            arboles.eliminarLibroDelMapaPorNombre(libro.getNombre());
-            libro.setNombre(nombre);
-            libro.setAutor(autor);
-            libro.setDescripcion(descripcion);
-            arboles.insertarLibroEnMapaPorNombre(libro);
-            JOptionPane.showInternalMessageDialog(null, "Libro editado :)");
-        } else {
-            JOptionPane.showMessageDialog(this, "No se encontró ningún libro con el ID especificado.", "Error",
-                    JOptionPane.ERROR_MESSAGE);
-        }
+    // Buscar libro por su ID
+    Libro libro = arboles.buscarLibroPorID(id);
 
-        // Limpiar los campos
-        txtIdLibro.setText("");
-        txtNombr.setText("");
-        txtAutor.setText("");
-        txtDescrip.setText("");
-        txtIdLibro.requestFocus();
+    if (libro != null) {
+        // Eliminar el libro del mapa usando el nombre antiguo (para actualizar el índice)
+        arboles.eliminarLibroDelMapaPorNombre(libro.getNombre());
 
-    }// GEN-LAST:event_jButton2ActionPerformed
+        // Actualizar los datos del libro con los nuevos valores ingresados
+        libro.setNombre(nombre);
+        libro.setAutor(autor);
+        libro.setDescripcion(descripcion);
+
+        // Insertar nuevamente el libro en el mapa con el nombre actualizado
+        arboles.insertarLibroEnMapaPorNombre(libro);
+
+        // Mostrar mensaje de éxito
+        JOptionPane.showInternalMessageDialog(null, "Libro editado :)");
+    } else {
+        // Mostrar error si no se encuentra el libro por el ID ingresado
+        JOptionPane.showMessageDialog(this, "No se encontró ningún libro con el ID especificado.", "Error",
+                JOptionPane.ERROR_MESSAGE);
+    }
+
+    // Limpiar los campos para nuevos datos
+    txtIdLibro.setText("");
+    txtNombr.setText("");
+    txtAutor.setText("");
+    txtDescrip.setText("");
+    txtIdLibro.requestFocus();
+
+    // SUGERENCIAS DE MEJORA:
+    // 1. Validar que los campos nombre, autor y descripción no estén vacíos antes de guardar.
+    // 2. Agregar confirmación previa a la actualización para evitar cambios accidentales.
+    // 3. Implementar validación de caracteres especiales o límites de longitud en los campos.
+    // 4. Manejar casos en los que el nombre nuevo ya exista en el mapa para evitar duplicados.
+    // 5. Mejorar la UX notificando al usuario con mensajes más claros y detallados.
+    // 6. Añadir manejo de errores en caso de fallos durante la actualización en el controlador.
+}// GEN-LAST:event_jButton2ActionPerformed
 
     private void txtNombrActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtNombrActionPerformed
         // TODO add your handling code here:
