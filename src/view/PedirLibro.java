@@ -151,54 +151,61 @@ public class PedirLibro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here: // TODO add your handling code here:
+    // Volver al menú principal del usuario autenticado
+    Panta1 pantausu = new Panta1();
+    pantausu.setVisible(true);
+    pantausu.setResizable(false);
+    pantausu.setLocationRelativeTo(null);
+    this.setVisible(false); // Ocultar la ventana actual
+}// GEN-LAST:event_jButton1ActionPerformed
 
-        Panta1 pantausu = new Panta1();
-        pantausu.setVisible(true);
-        pantausu.setResizable(false);
-        pantausu.setLocationRelativeTo(null);
-        this.setVisible(false);
-    }// GEN-LAST:event_jButton1ActionPerformed
+private void txtIdLibroActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtIdLibroActionPerformed
+    // Acción cuando se presiona Enter en el campo de texto (opcionalmente útil)
+}// GEN-LAST:event_txtIdLibroActionPerformed
 
-    private void txtIdLibroActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtIdLibroActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_txtIdLibroActionPerformed
+private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
+    // Acción para pedir un libro (prestarlo al usuario actual)
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        String entrada = txtIdLibro.getText().trim();
-        Libro libro = null;
+    String entrada = txtIdLibro.getText().trim(); // Obtener texto ingresado y eliminar espacios
+    Libro libro = null; // Inicializar variable del libro a buscar
 
-        ArbolesController arboles = ArbolesController.getInstancia();
+    // Obtener instancia del controlador (Singleton)
+    ArbolesController arboles = ArbolesController.getInstancia();
 
-        // Buscar por ID si es un número, si no, por nombre
-        try {
-            int id = Integer.parseInt(entrada);
-            libro = arboles.buscarLibroPorID(id);
-        } catch (NumberFormatException e) {
-            // No es número, buscar por nombre
-            libro = arboles.buscarLibroPorNombre(entrada);
-        }
+    // Buscar libro por ID si es un número, si no, por nombre
+    try {
+        int id = Integer.parseInt(entrada);
+        libro = arboles.buscarLibroPorID(id);
+    } catch (NumberFormatException e) {
+        // Si no es número, buscar por nombre
+        libro = arboles.buscarLibroPorNombre(entrada);
+    }
 
-        if (libro != null && libro.getEstado()) { // Estado true = disponible
-            arboles.cambiarEstadoLibroPorID(libro.getID()); // Marcar como prestado
-            Usuario usuarioActual = arboles.getUsuarioActual();
-            if (usuarioActual != null) {
-                usuarioActual.añadirLibroPrestado(libro);
-                JOptionPane.showMessageDialog(null, "El libro '" + libro.getNombre() + "' ahora está a tu cargo :)");
-            } else {
-                JOptionPane.showMessageDialog(null, "No hay un usuario autenticado.");
-            }
+    // Si el libro existe y está disponible
+    if (libro != null && libro.getEstado()) {
+        arboles.cambiarEstadoLibroPorID(libro.getID()); // Marcar el libro como no disponible (prestado)
 
-        } else if (libro != null && !libro.getEstado()) {
-            JOptionPane.showMessageDialog(null, "El libro '" + libro.getNombre() + "' no está disponible.");
+        Usuario usuarioActual = arboles.getUsuarioActual(); // Obtener el usuario autenticado
+
+        if (usuarioActual != null) {
+            usuarioActual.añadirLibroPrestado(libro); // Agregar el libro a la lista de préstamos del usuario
+            JOptionPane.showMessageDialog(null, "El libro '" + libro.getNombre() + "' ahora está a tu cargo :)");
         } else {
-            JOptionPane.showMessageDialog(null, "El libro no existe.");
+            JOptionPane.showMessageDialog(null, "No hay un usuario autenticado.");
         }
 
-        txtIdLibro.setText("");
-        txtIdLibro.requestFocus();
-    }// GEN-LAST:event_jButton2ActionPerformed
+    } else if (libro != null && !libro.getEstado()) {
+        // El libro existe, pero está prestado
+        JOptionPane.showMessageDialog(null, "El libro '" + libro.getNombre() + "' no está disponible.");
+    } else {
+        // El libro no fue encontrado
+        JOptionPane.showMessageDialog(null, "El libro no existe.");
+    }
+
+    // Limpiar campo de entrada
+    txtIdLibro.setText("");
+    txtIdLibro.requestFocus();
+}// GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
