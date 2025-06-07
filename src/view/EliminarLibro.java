@@ -160,54 +160,60 @@ public class EliminarLibro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        PantallaAdmin ingre = new PantallaAdmin();
-        ingre.setVisible(true);
-        ingre.setResizable(false);
-        ingre.setLocationRelativeTo(null);
-        this.setVisible(false);
-    }// GEN-LAST:event_jButton1ActionPerformed
+    // Evento que se ejecuta al hacer clic en jButton1 (posiblemente un botón como "Ir a panel de administración")
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+    // Crea una nueva instancia de la ventana de administración
+    PantallaAdmin ingre = new PantallaAdmin();
+    ingre.setVisible(true);             // Muestra la ventana
+    ingre.setResizable(false);          // Evita que se pueda redimensionar
+    ingre.setLocationRelativeTo(null);  // Centra la ventana en la pantalla
+    this.setVisible(false);             // Oculta la ventana actual
+}// GEN-LAST:event_jButton1ActionPerformed
+
 
     private void txtIdLibroActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtIdLibroActionPerformed
         // TODO add your handling code here:
     }// GEN-LAST:event_txtIdLibroActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+// Evento que se ejecuta al hacer clic en jButton2 (probablemente botón "Eliminar libro")
+private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
+    // Captura el texto ingresado por el usuario en el campo de ID
+    String idString = txtIdLibro.getText();
+    int id;
 
-        String idString = txtIdLibro.getText();
-        int id;
+    try {
+        // Intenta convertir el texto ingresado a un número entero
+        id = Integer.parseInt(idString);
+    } catch (NumberFormatException e) {
+        // Si el texto no es un número válido, muestra un mensaje de error
+        JOptionPane.showMessageDialog(this, "No existe el ID indicado", "Error", JOptionPane.ERROR_MESSAGE);
+        return; // Detiene la ejecución si el ID no es válido
+    }
 
-        try {
-            id = Integer.parseInt(idString);
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "No existe el ID indicado", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+    // Obtiene la instancia única del controlador (singleton)
+    ArbolesController arboles = ArbolesController.getInstancia();
 
-        // Obtener instancia del controlador
-        ArbolesController arboles = ArbolesController.getInstancia();
+    // Llama al método para eliminar el libro con el ID especificado
+    arboles.eliminarLibro(id);
 
-        // Eliminar el libro
-        arboles.eliminarLibro(id);
+    // Muestra mensaje de confirmación
+    JOptionPane.showMessageDialog(null, "Libro eliminado de forma exitosa");
 
-        JOptionPane.showMessageDialog(null, "Libro eliminado de forma exitosa");
-        txtIdLibro.setText("");
-        txtIdLibro.requestFocus();
+    // Limpia el campo de texto y enfoca de nuevo para ingresar otro ID
+    txtIdLibro.setText("");
+    txtIdLibro.requestFocus();
 
-        /*
-         * int id = Integer.parseInt(txtIdLibro.getText());
-         * 
-         * ControladorLibro.eliminarLibro(id);
-         * 
-         * JOptionPane.showMessageDialog(this, "El libro fue eliminado con éxito.",
-         * "Libro eliminado", JOptionPane.INFORMATION_MESSAGE);
-         * 
-         * txtIdLibro.setText("");
-         * txtIdLibro.requestFocus();
-         */
-    }// GEN-LAST:event_jButton2ActionPerformed
+    /*
+     * Código alternativo (comentado) que probablemente se usó antes:
+     * int id = Integer.parseInt(txtIdLibro.getText());
+     * ControladorLibro.eliminarLibro(id);
+     * JOptionPane.showMessageDialog(this, "El libro fue eliminado con éxito.",
+     * "Libro eliminado", JOptionPane.INFORMATION_MESSAGE);
+     * txtIdLibro.setText("");
+     * txtIdLibro.requestFocus();
+     */
+}// GEN-LAST:event_jButton2ActionPerformed
+
 
     /**
      * @param args the command line arguments
