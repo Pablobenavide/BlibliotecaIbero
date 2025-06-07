@@ -164,45 +164,51 @@ public class VerLibroUs extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        Panta1 pantausu = new Panta1();
-        pantausu.setVisible(true);
-        pantausu.setResizable(false);
-        pantausu.setLocationRelativeTo(null);
-        this.setVisible(false);
-    }// GEN-LAST:event_jButton1ActionPerformed
+   private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+    // Regresar a la pantalla principal del usuario
+    Panta1 pantausu = new Panta1();
+    pantausu.setVisible(true);
+    pantausu.setResizable(false);
+    pantausu.setLocationRelativeTo(null);
+    this.setVisible(false);  // Oculta la ventana actual
+}// GEN-LAST:event_jButton1ActionPerformed
 
-    private void txtBucaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtBucaActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_txtBucaActionPerformed
+private void txtBucaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtBucaActionPerformed
+}// GEN-LAST:event_txtBucaActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        String entrada = txtBuca.getText().trim();
+private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
+    // Obtener el texto ingresado en el campo de búsqueda
+    String entrada = txtBuca.getText().trim();
 
-        ArbolesController arboles = ArbolesController.getInstancia();
-        Libro libroEncontrado = null;
+    // Obtener la instancia del controlador (singleton)
+    ArbolesController arboles = ArbolesController.getInstancia();
+    Libro libroEncontrado = null;
 
-        try {
-            int id = Integer.parseInt(entrada);
-            libroEncontrado = arboles.buscarLibroPorID(id);
-        } catch (NumberFormatException e) {
-            libroEncontrado = arboles.buscarLibroPorNombre(entrada);
-        }
+    try {
+        // Si la entrada es un número, buscar por ID
+        int id = Integer.parseInt(entrada);
+        libroEncontrado = arboles.buscarLibroPorID(id);
+    } catch (NumberFormatException e) {
+        // Si no es un número, buscar por nombre
+        libroEncontrado = arboles.buscarLibroPorNombre(entrada);
+    }
 
-        if (libroEncontrado != null) {
-            txtMosLi.setText("ID: " + libroEncontrado.getID() + "\n"
-                    + "Nombre: " + libroEncontrado.getNombre() + "\n"
-                    + "Autor: " + libroEncontrado.getAutor() + "\n"
-                    + "Descripción: " + libroEncontrado.getDescripcion() + "\n"
-                    + "Estado: " + (libroEncontrado.getEstado() ? "Disponible" : "Prestado"));
-        } else {
-            JOptionPane.showMessageDialog(this, "No se encontró ningún libro con ese ID o nombre.", "Error",
-                    JOptionPane.ERROR_MESSAGE);
-        }
+    // Si se encontró un libro
+    if (libroEncontrado != null) {
+        // Mostrar información en el área de texto txtMosLi
+        txtMosLi.setText(
+            "ID: " + libroEncontrado.getID() + "\n"
+          + "Nombre: " + libroEncontrado.getNombre() + "\n"
+          + "Autor: " + libroEncontrado.getAutor() + "\n"
+          + "Descripción: " + libroEncontrado.getDescripcion() + "\n"
+          + "Estado: " + (libroEncontrado.getEstado() ? "Disponible" : "Prestado")
+        );
+    } else {
+        // Mostrar mensaje de error si no se encuentra el libro
+        JOptionPane.showMessageDialog(this, "No se encontró ningún libro con ese ID o nombre.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+}// GEN-LAST:event_jButton2ActionPerformed
 
-    }// GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
